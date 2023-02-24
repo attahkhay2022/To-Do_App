@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
     use HasFactory;
+    
+    protected $guarded=[];
 
     //relation with user model[1:M]
     
