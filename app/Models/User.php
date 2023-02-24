@@ -32,6 +32,10 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+//Creating relationship between models[m:1]
+    public function tasks(){
+        return $this->hasMany(Task::class);
+    }
 
     /**
      * The attributes that should be cast.
