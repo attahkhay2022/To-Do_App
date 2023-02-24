@@ -13,8 +13,24 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    {{ __('You are logged in!') }}
+                    <!--data passed using compact fnx from home controller-->
+                    @if (count($tasks))
+                    <table class="table table-striped">
+                        <tr>
+                           <th>Tasks</th> 
+                           <th>Description</th>
+                        </tr>
+                        @foreach ($tasks as $task)
+                            <tr>
+                                <td>{{ $task->title }}</td>
+                                <td>{{ $task->description }}</td>
+                            </tr>   
+                        @endforeach
+                    
+                    </table>
+                    @else
+                    <p>You dont Have any Task yet</p>
+                    @endif
                 </div>
             </div>
         </div>

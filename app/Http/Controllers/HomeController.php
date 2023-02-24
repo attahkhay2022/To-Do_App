@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,8 +22,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+    //rendering task data to the user 
     public function index()
     {
-        return view('home');
+       $tasks= Task::where('user_id', auth()->id())->get();
+       return view('/home', compact('tasks'));
     }
 }
