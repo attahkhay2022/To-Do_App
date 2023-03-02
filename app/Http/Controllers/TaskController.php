@@ -51,7 +51,10 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        if($task->user_id != auth()->id())
+        {
+            abort(403);
+        }
         return view('edit',compact('task'));
         
     }
@@ -61,7 +64,10 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        //
+        if($task->user_id != auth()->id())
+        {
+            abort(403);
+        }
         $task->update([
             'title'=>$request->title,
             'description'=>$request->description
@@ -74,8 +80,10 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
-
+        if($task->user_id != auth()->id())
+        {
+            abort(403);
+        }
         $task->delete();
         return redirect()->back()->with('status', 'Task Removed Succesfully');
 
